@@ -48,15 +48,22 @@ const getAllPosts = async ({
     }
 
     const result = await prisma.post.findMany({
-        skip,
-        take: limit,
-        where,
-        include: {
-            author: true
+      skip,
+      take: limit,
+      where,
+      include: {
+        author: {
+          select: {
+            id: true,
+            name: true,
+            email: true,
+            phone: true,
+          },
         },
-        orderBy: {
-            createdAt: "desc"
-        }
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     const total = await prisma.post.count({ where })
