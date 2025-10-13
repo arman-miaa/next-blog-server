@@ -9,18 +9,13 @@ const app = express();
 
 // Middleware
 // app.use(cors()); 
-app.use(
-  cors({
-    origin: ["http://localhost:3000","https://next-blog-ui-omega.vercel.app"],
-    credentials: true,
-  })
-);
+
 app.use(compression()); // Compresses response bodies for faster delivery
 app.use(express.json()); // Parse incoming JSON requests
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://next-blog-ui-omega.vercel.app"],
     credentials: true,
   })
 );
